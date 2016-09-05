@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title></title>	
-</head>
-<body>
-		
-</body>
+<html ng-app="contas">
+    <head>
+        <meta charset="UTF-8">
+        <title>Controle de Contas</title>
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+        <style>
+            .jumbotron {
+                width: 600px;
+                text-align: center;
+                margin-top: 10px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .table {
+                margin-top: 20px;
+            }            
+            .form-control {
+                margin-bottom: 5px;
+            }
+        </style>
+        <script src="lib/angular/angular.js"></script>
+        <script>
+            angular.module("contas", []);
+            angular.module("contas").controller("contasCtrl", function($scope) {
+                $scope.app = "Controle de Contas";
+                $scope.contaList = [
+                    {id_conta: 1, descricao: "ENERGIA"},
+                    {id_conta: 2, descricao: "FAXINA"},
+                    {id_conta: 3, descricao: "ARRENDAMENTO"},
+                    {id_conta: 4, descricao: "TELEFONE"},
+                    {id_conta: 5, descricao: "CONDOMÍNIO HILNAH MACHADO"},
+                    {id_conta: 6, descricao: "GÁS"}
+                ];
+                $scope.adicionaConta = function (conta) {
+                    $scope.contaList.push(angular.copy(conta));
+                    delete $scope.conta;
+                };
+            });
+        </script>
+    </head>
+    <body ng-controller="contasCtrl">
+        <div class="jumbotron">
+            <h3>{{app}}</h3>
+
+            <input class="form-control" type="text" ng-model="conta.id_conta" placeholder="Código"/>
+            <input class="form-control" type="text" ng-model="conta.descricao" placeholder="Descricao"/>
+            <button class="btn btn-primary btn-block" ng-click="adicionaConta(conta)">Adicionar Contato</button>
+            {{conta}}
+            <hr/>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr ng-repeat="conta in contaList">
+                    <td>{{conta.id_conta}}</td>
+                    <td>{{conta.descricao}}</td>
+                </tr>
+            </table>
+
+
+        </div>
+    </body>
 </html>

@@ -12,17 +12,24 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+            h3 {
+                margin-bottom: 30px;
+            }
             .table {
                 margin-top: 20px;
             }            
             .form-control {
                 margin-bottom: 5px;
             }
+            hr {
+			border-color: #999;
+		}
         </style>
         <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-messages.js"></script>
         <script>
-            angular.module("contas", []);
-            angular.module("contas").controller("contasCtrl", function($scope) {
+            angular.module("contas", ["ngMessages"]);
+            angular.module("contas").controller("contasCtrl", function ($scope) {
                 $scope.app = "Controle de Contas";
                 $scope.contaList = [
                     {id_conta: 1, descricao: "ENERGIA"},
@@ -35,6 +42,11 @@
                 $scope.adicionaConta = function (conta) {
                     $scope.contaList.push(angular.copy(conta));
                     delete $scope.conta;
+                    $scope.contaForm.$setPristine();
+                };
+                $scope.ordenarPor = function (campo) {
+                    $scope.criterioDeOrdenacao = campo;
+                    $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
                 };
             });
         </script>
@@ -43,24 +55,35 @@
         <div class="jumbotron">
             <h3>{{app}}</h3>
 
-            <input class="form-control" type="text" ng-model="conta.id_conta" placeholder="Código"/>
-            <input class="form-control" type="text" ng-model="conta.descricao" placeholder="Descricao"/>
-            <button class="btn btn-primary btn-block" ng-click="adicionaConta(conta)">Adicionar Contato</button>
-            {{conta}}
-            <hr/>
+            <form name="contaForm">              
+                <div ng-messages="contaForm.descricao.$error" class="alert alert-danger" ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid">
+                    <div ng-message="required">
+                        Por favor, preencha o campo descrição!
+                    </div>
+                    <div ng-message="minlength">
+                        O campo descricao deve ter no mínimo 3 caracteres.
+                    </div>
+                </div>                 
+                <input class="form-control" type="text" ng-model="conta.id_conta" placeholder="Código" name="idConta" ng-disabled="true"/>
+                <input class="form-control" type="text" ng-model="conta.descricao" placeholder="Descricao" name="descricao" ng-required="true" ng-minlength="3"/>                               
+                <button class="btn btn-primary btn-block" ng-click="adicionaConta(conta)" ng-disabled="contaForm.$invalid">Adicionar Contato</button>                 
+            </form>
 
-            <table class="table table-striped">
+            <hr/>
+            <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+
+            <table ng-show="contaList.length > 0" class="table table-striped">
                 <tr>
-                    <th>Código</th>
-                    <th>Descrição</th>
+                    <th><a href="" ng-click="ordenarPor('idConta')">Código</th>
+                    <th><a href="" ng-click="ordenarPor('descricao')">Descrição</th>
                 </tr>
-                <tr ng-repeat="conta in contaList">
+                <tr ng-repeat="conta in contaList| filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
                     <td>{{conta.id_conta}}</td>
-                    <td>{{conta.descricao}}</td>
+                    <td>{{conta.descricao| uppercase}}</td>
                 </tr>
             </table>
-
-
         </div>
+
+        <div ng-include="'footer.html'"></div>
     </body>
 </html>

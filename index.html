@@ -36,14 +36,8 @@ hr {
 	angular.module("contas", [ "ngMessages" ]);
 	angular.module("contas").controller("contasCtrl", function($scope, $http) {
 		$scope.app = "Controle de Contas";
-		$scope.contaList = [/*
-				                    {id_conta: 1, descricao: "ENERGIA"},
-				                    {id_conta: 2, descricao: "FAXINA"},
-				                    {id_conta: 3, descricao: "ARRENDAMENTO"},
-				                    {id_conta: 4, descricao: "TELEFONE"},
-				                    {id_conta: 5, descricao: "CONDOMÍNIO HILNAH MACHADO"},
-				                    {id_conta: 6, descricao: "GÁS"}*/
-		];
+		
+		$scope.contaList = [];
 
 		var carregarContas = function() {
 			$http.get("http://localhost:8080/contas").success(function(data) {
@@ -54,10 +48,15 @@ hr {
 		};
 
 		$scope.adicionaConta = function(conta) {
-			$scope.contaList.push(angular.copy(conta));
-			delete $scope.conta;
-			$scope.contaForm.$setPristine();
+			$http.post("http://localhost:8080/contas", conta).success(function (data) {				
+				delete $scope.conta;
+				$scope.contaForm.$setPristine();	
+				carregarContas();
+			}).error(function(data, status) {
+				$scope.message = "Aconteceu um problema: " + data;
+			});
 		};
+		
 		$scope.ordenarPor = function(campo) {
 			$scope.criterioDeOrdenacao = campo;
 			$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
@@ -67,6 +66,7 @@ hr {
 </script>
 </head>
 <body ng-controller="contasCtrl">
+{{message}}
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
 
@@ -79,14 +79,20 @@ hr {
 				<div ng-message="minlength">O campo descricao deve ter no
 					mínimo 3 caracteres.</div>
 			</div>
-			<input class="form-control" type="text" ng-model="conta.id_conta"
-				placeholder="Código" name="idConta" ng-disabled="true" /> <input
-				class="form-control" type="text" ng-model="conta.descricao"
-				placeholder="Descricao" name="descricao" ng-required="true"
-				ng-minlength="3" />
+			<input class="form-control" 
+			       type="hidden" 
+			       ng-model="conta.id"				   
+				   name="id" /> 
+			<input class="form-control"
+			       type="text"			       
+			       ng-model="conta.descricao"
+			       placeholder="Descricão" 
+			       name="descricao" 
+			       ng-required="true"
+			       ng-minlength="3" uppercase="true" />
 			<button class="btn btn-primary btn-block"
 				ng-click="adicionaConta(conta)" ng-disabled="contaForm.$invalid">Adicionar
-				Contato</button>
+				Conta</button>
 		</form>
 
 		<hr />
@@ -95,7 +101,7 @@ hr {
 
 		<table ng-show="contaList.length > 0" class="table table-striped">
 			<tr>
-				<th><a href="" ng-click="ordenarPor('idConta')">Código</th>
+				<th><a href="" ng-click="ordenarPor('id')">Código</th>
 				<th><a href="" ng-click="ordenarPor('descricao')">Descrição</th>
 			</tr>
 			<tr

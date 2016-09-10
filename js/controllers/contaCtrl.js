@@ -2,7 +2,7 @@ angular.module("contas").controller("contasCtrl", function($scope, contaAPI) {
 	$scope.app = "Controle de Contas";
 
 	$scope.contaList = [];
-
+	
 	var carregarContas = function() {
 		contaAPI.getContas().success(function(data) {
 			$scope.contaList = data;
@@ -16,6 +16,7 @@ angular.module("contas").controller("contasCtrl", function($scope, contaAPI) {
 			delete $scope.conta;
 			$scope.contaForm.$setPristine();	
 			carregarContas();
+			$scope.message = "";
 		}).error(function(data, status) {
 			$scope.message = "Aconteceu um problema: " + data;
 		});

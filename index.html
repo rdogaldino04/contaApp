@@ -14,11 +14,12 @@
 	
 	<script src="js/value/configValue.js"></script>
 </head>
-<body ng-controller="contasCtrl">
-	{{message}}
+<body ng-controller="contasCtrl">	
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
-
+		<div ng-show="message" class="alert alert-danger">
+			Conta já cadastrada!
+		</div>
 		<form name="contaForm">
 			<div ng-messages="contaForm.descricao.$error" 
 			     class="alert alert-danger"
@@ -40,7 +41,7 @@
 			       placeholder="Descricão" 
 			       name="descricao" 
 			       ng-required="true"
-			       ng-minlength="3" uppercase="true" />
+			       ng-minlength="3" />
 			<button class="btn btn-primary btn-block"
 					ng-click="adicionaConta(conta)" 
 					ng-disabled="contaForm.$invalid">

@@ -1,83 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="contas">
 <head>
-<meta charset="UTF-8">
-<title>Controle de Contas</title>
-<link rel="stylesheet" type="text/css"
-	href="lib/bootstrap/bootstrap.css">
-<style>
-.jumbotron {
-	width: 600px;
-	text-align: center;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-h3 {
-	margin-bottom: 30px;
-}
-
-.table {
-	margin-top: 20px;
-}
-
-.form-control {
-	margin-bottom: 5px;
-}
-
-hr {
-	border-color: #999;
-}
-</style>
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular/angular-messages.js"></script>
-<script>
-	angular.module("contas", [ "ngMessages" ]);
-	angular.module("contas").controller("contasCtrl", function($scope, $http) {
-		$scope.app = "Controle de Contas";
-		
-		$scope.contaList = [];
-
-		var carregarContas = function() {
-			$http.get("http://localhost:8080/contas").success(function(data) {
-				$scope.contaList = data;
-			}).error(function(data, status) {
-				$scope.message = "Aconteceu um problema: " + data;
-			});
-		};
-
-		$scope.adicionaConta = function(conta) {
-			$http.post("http://localhost:8080/contas", conta).success(function (data) {				
-				delete $scope.conta;
-				$scope.contaForm.$setPristine();	
-				carregarContas();
-			}).error(function(data, status) {
-				$scope.message = "Aconteceu um problema: " + data;
-			});
-		};
-		
-		$scope.ordenarPor = function(campo) {
-			$scope.criterioDeOrdenacao = campo;
-			$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-		};
-		carregarContas();
-	});
-</script>
+	<meta charset="UTF-8">
+	<title>Controle de Contas</title>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-messages.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/contaCtrl.js"></script>	
 </head>
 <body ng-controller="contasCtrl">
-{{message}}
+	{{message}}
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
 
 		<form name="contaForm">
-			<div ng-messages="contaForm.descricao.$error"
-				class="alert alert-danger"
-				ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid">
-				<div ng-message="required">Por favor, preencha o campo
-					descrição!</div>
-				<div ng-message="minlength">O campo descricao deve ter no
-					mínimo 3 caracteres.</div>
+			<div ng-messages="contaForm.descricao.$error" 
+			     class="alert alert-danger"
+				 ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid">
+				<div ng-message="required">
+					Por favor, preencha o campo descrição!
+				</div>
+				<div ng-message="minlength">
+					O campo descricao deve ter no mínimo 3 caracteres.
+				</div>
 			</div>
 			<input class="form-control" 
 			       type="hidden" 
@@ -91,27 +38,28 @@ hr {
 			       ng-required="true"
 			       ng-minlength="3" uppercase="true" />
 			<button class="btn btn-primary btn-block"
-				ng-click="adicionaConta(conta)" ng-disabled="contaForm.$invalid">Adicionar
-				Conta</button>
+					ng-click="adicionaConta(conta)" 
+					ng-disabled="contaForm.$invalid">
+				Adicionar Conta
+			</button>
 		</form>
-
 		<hr />
-		<input class="form-control" type="text" ng-model="criterioDeBusca"
-			placeholder="O que você está buscando?" />
-
-		<table ng-show="contaList.length > 0" class="table table-striped">
+		<input class="form-control" 
+		       type="text" 
+			   ng-model="criterioDeBusca"
+			   placeholder="O que você está buscando?" />
+		<table ng-show="contaList.length > 0" 
+		       class="table table-striped">
 			<tr>
 				<th><a href="" ng-click="ordenarPor('id')">Código</th>
 				<th><a href="" ng-click="ordenarPor('descricao')">Descrição</th>
 			</tr>
-			<tr
-				ng-repeat="conta in contaList| filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+			<tr ng-repeat="conta in contaList| filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
 				<td>{{conta.id}}</td>
 				<td>{{conta.descricao| uppercase}}</td>
 			</tr>
 		</table>
 	</div>
-
-	<div ng-include="'footer.html'"></div>
+	<div ng-include="'view/footer.html'"></div>
 </body>
 </html>

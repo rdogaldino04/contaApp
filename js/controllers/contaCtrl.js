@@ -1,7 +1,6 @@
-angular.module("contas").controller("contasCtrl", function($scope, contaAPI) {
+angular.module("contas").controller("contasCtrl", function($scope, contasTodas) {
 	$scope.app = "Controle de Contas";
-
-	$scope.contaList = [];
+	$scope.contaList = contasTodas.data;
 	
 	var carregarContas = function() {
 		contaAPI.getContas().success(function(data) {
@@ -15,16 +14,13 @@ angular.module("contas").controller("contasCtrl", function($scope, contaAPI) {
 		contaAPI.saveConta(conta).success(function (data) {				
 			delete $scope.conta;
 			$scope.contaForm.$setPristine();	
-			carregarContas();
-			$scope.message = "";
-		}).error(function(data, status) {
-			$scope.message = "Aconteceu um problema: " + data;
+			carregarContas();			
 		});
 	};
 
 	$scope.ordenarPor = function(campo) {
 		$scope.criterioDeOrdenacao = campo;
 		$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-	};
-	carregarContas();
+	};		
+	
 });

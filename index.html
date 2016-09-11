@@ -6,65 +6,21 @@
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/app.css">
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-route.js"></script>
 	<script src="lib/angular/angular-messages.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers/contaCtrl.js"></script>	
+	<script src="js/controllers/novaContaCtrl.js"></script>
 	<script src="js/services/contaAPIService.js"></script>
-	
-	
+	<script src="js/config/routeConfig.js"></script>
 	<script src="js/value/configValue.js"></script>
 </head>
-<body ng-controller="contasCtrl">	
-	<div class="jumbotron">
-		<h3>{{app}}</h3>
-		<div ng-show="message" class="alert alert-danger">
-			Conta já cadastrada!
-		</div>
-		<form name="contaForm">
-			<div ng-messages="contaForm.descricao.$error" 
-			     class="alert alert-danger"
-				 ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid">
-				<div ng-message="required">
-					Por favor, preencha o campo descrição!
-				</div>
-				<div ng-message="minlength">
-					O campo descricao deve ter no mínimo 3 caracteres.
-				</div>
-			</div>
-			<input class="form-control" 
-			       type="hidden" 
-			       ng-model="conta.id"				   
-				   name="id" /> 
-			<input class="form-control"
-			       type="text"			       
-			       ng-model="conta.descricao"
-			       placeholder="Descricão" 
-			       name="descricao" 
-			       ng-required="true"
-			       ng-minlength="3" />
-			<button class="btn btn-primary btn-block"
-					ng-click="adicionaConta(conta)" 
-					ng-disabled="contaForm.$invalid">
-				Adicionar Conta
-			</button>
-		</form>
-		<hr />
-		<input class="form-control" 
-		       type="text" 
-			   ng-model="criterioDeBusca"
-			   placeholder="O que você está buscando?" />
-		<table ng-show="contaList.length > 0" 
-		       class="table table-striped">
-			<tr>
-				<th><a href="" ng-click="ordenarPor('id')">Código</th>
-				<th><a href="" ng-click="ordenarPor('descricao')">Descrição</th>
-			</tr>
-			<tr ng-repeat="conta in contaList| filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
-				<td>{{conta.id}}</td>
-				<td>{{conta.descricao| uppercase}}</td>
-			</tr>
-		</table>
-	</div>
-	<div ng-include="'view/footer.html'"></div>
+<body>	
+
+	<div ng-view></div>
+<!--
+
+-->
+	<div ng-include="'view/footer.html'"></div>	
 </body>
 </html>

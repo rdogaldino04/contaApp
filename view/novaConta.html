@@ -1,0 +1,30 @@
+<div class="jumbotron">	
+	<form name="contaForm">
+		<div ng-messages="contaForm.descricao.$error" 
+			 class="alert alert-danger"
+			 ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid">
+			<div ng-message="required">
+				Por favor, preencha o campo descrição!
+			</div>
+			<div ng-message="minlength">
+				O campo descricao deve ter no mínimo 3 caracteres.
+			</div>
+		</div>
+		<input class="form-control" 
+			   type="hidden" 
+			   ng-model="conta.id"				   
+			   name="id" /> 
+		<input class="form-control"
+			   type="text"			       
+			   ng-model="conta.descricao"
+			   placeholder="Descricão" 
+			   name="descricao" 
+			   ng-required="true"
+			   ng-minlength="3" />
+		<button class="btn btn-primary btn-block"
+				ng-click="adicionaConta(conta)" 
+				ng-disabled="contaForm.$invalid">
+			Adicionar Conta
+		</button>
+	</form>
+</div>

@@ -1,1 +1,1 @@
-angular.module("contas", [ "ngMessages" ]);
+angular.module("contas", [ "ngMessages", "ngRoute" ]);

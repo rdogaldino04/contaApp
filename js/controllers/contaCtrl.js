@@ -10,14 +10,6 @@ angular.module("contas").controller("contasCtrl", function($scope, contasTodas) 
 		});
 	};
 
-	$scope.adicionaConta = function(conta) {
-		contaAPI.saveConta(conta).success(function (data) {				
-			delete $scope.conta;
-			$scope.contaForm.$setPristine();	
-			carregarContas();			
-		});
-	};
-
 	$scope.ordenarPor = function(campo) {
 		$scope.criterioDeOrdenacao = campo;
 		$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;

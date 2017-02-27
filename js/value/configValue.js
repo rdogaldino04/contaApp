@@ -1,3 +1,3 @@
 angular.module("contas").constant("config", {
-	baseUrl: "http://localhost:8080"
+	baseUrl: "http://localhost:8886"
 });

@@ -24,5 +24,5 @@ angular.module("contas").config(function ($routeProvider) {
 	$routeProvider.when("/error", {
 		templateUrl: "view/error.html"
 	});
-	$routeProvider.otherwise({redirectTo: "/contas"});
+	$routeProvider.otherwise({redirectTo: "/"});
 });

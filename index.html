@@ -16,9 +16,15 @@
 	<link rel="stylesheet" type="text/css" href="assets/stylesheets/application.css"/>
 
 	<script src="js/app.js"></script>
+	
 	<script src="js/controllers/contaCtrl.js"></script>	
 	<script src="js/controllers/novaContaCtrl.js"></script>
+	<script src="js/controllers/novaMovimentacaoCtrl.js"></script>
+	
 	<script src="js/services/contaAPIService.js"></script>
+	<script src="js/services/mesAPIService.js"></script>
+	<script src="js/services/movimentacaoAPIService.js"></script>
+	
 	<script src="js/config/routeConfig.js"></script>
 	<script src="js/value/configValue.js"></script>
 </head>
@@ -66,8 +72,8 @@
       
           <ul class="aw-menu__list  aw-menu__list--sublist">
             <li class="aw-menu__item  aw-menu__item--link"><a href="#/novaConta">Cadastro de contas</a></li>
-            <li class="aw-menu__item  aw-menu__item--link  is-active"><a href="pesquisa-produtos.html">Pesquisa de produtos</a></li>
-            <li class="aw-menu__item  aw-menu__item--link"><a href="tabela-sem-dados.html">Tabela sem dados</a></li>
+            <li class="aw-menu__item  aw-menu__item--link  is-active"><a href="#/contas">Pesquisa de contas</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a href="#/movimentacoes/nova">Cadastro movimento</a></li>
           </ul>
         </li>
 

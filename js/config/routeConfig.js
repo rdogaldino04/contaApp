@@ -12,6 +12,14 @@ angular.module("contas").config(function ($routeProvider) {
 		templateUrl: "view/novaConta.html",
 		controller: "novaContaCtrl"		
 	});
+	$routeProvider.when("/movimentacoes/nova", {
+		templateUrl: "view/movimentacoes/novaMovimentacao.html",
+		controller: "novaMovimentacaoCtrl"
+	});
+	$routeProvider.when("/movimentacoes", {
+		templateUrl: "view/movimentacoes/movimentacoes.html",
+		controller: "novaMovimentacaoCtrl"
+	});
 	/*$routeProvider.when("/detalhesContato/:id", {
 		templateUrl: "view/detalhesContato.html",
 		controller: "detalhesContatoCtrl",

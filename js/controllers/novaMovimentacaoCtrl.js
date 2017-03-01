@@ -2,8 +2,7 @@ angular.module("contas").controller("novaMovimentacaoCtrl", function($scope, mes
 	$scope.meses = mesAPI.getMeses();		
 	$scope.adicionaMovimentacao = function (movimentacao) {				
 		movimentacao.statusMovimentacao = 'ABERTA';
-		movimentacao.dataRegistro = new Date();
-		console.log(movimentacao);		
+		movimentacao.dataRegistro = new Date();		
 		movimentacaoAPI.save(movimentacao).success(function (data) {
 			delete $scope.movimentacao;
 			$scope.movimentacaoForm.$setPristine();

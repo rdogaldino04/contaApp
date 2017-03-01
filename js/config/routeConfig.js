@@ -18,7 +18,12 @@ angular.module("contas").config(function ($routeProvider) {
 	});
 	$routeProvider.when("/movimentacoes", {
 		templateUrl: "view/movimentacoes/movimentacoes.html",
-		controller: "novaMovimentacaoCtrl"
+		controller: "movimentacoesCtrl",
+		resolve: {
+			movimentacoesAbertasSemItens: function (movimentacaoAPI) {
+				return movimentacaoAPI.findByMovimentacoesAbertasSemItens();
+			}
+		}		
 	});
 	/*$routeProvider.when("/detalhesContato/:id", {
 		templateUrl: "view/detalhesContato.html",

@@ -1,40 +1,40 @@
-.table-pesq-produto-col-preco {
-  min-width: 130px;
+.table-pesq-produto-col-ano {
+  min-width: 80px;
   text-align: center;
   display: none !important;
 }
 @media (min-width: 992px) {
-  .table-pesq-produto-col-preco {
+  .table-pesq-produto-col-ano {
     display: block !important;
   }
-  table.table-pesq-produto-col-preco {
+  table.table-pesq-produto-col-ano {
     display: table !important;
   }
-  tr.table-pesq-produto-col-preco {
+  tr.table-pesq-produto-col-ano {
     display: table-row !important;
   }
-  th.table-pesq-produto-col-preco,
-  td.table-pesq-produto-col-preco {
+  th.table-pesq-produto-col-ano,
+  td.table-pesq-produto-col-ano {
     display: table-cell !important;
   }
 }
-.table-pesq-produto-col-estoque {
+.table-pesq-produto-col-dataRegistro {
   min-width: 100px;
   text-align: center;
   display: none !important;
 }
 @media (min-width: 992px) {
-  .table-pesq-produto-col-estoque {
+  .table-pesq-produto-col-dataRegistro {
     display: block !important;
   }
-  table.table-pesq-produto-col-estoque {
+  table.table-pesq-produto-col-dataRegistro {
     display: table !important;
   }
-  tr.table-pesq-produto-col-estoque {
+  tr.table-pesq-produto-col-dataRegistro {
     display: table-row !important;
   }
-  th.table-pesq-produto-col-estoque,
-  td.table-pesq-produto-col-estoque {
+  th.table-pesq-produto-col-dataRegistro,
+  td.table-pesq-produto-col-dataRegistro {
     display: table-cell !important;
   }
 }

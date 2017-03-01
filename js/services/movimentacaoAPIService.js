@@ -1,5 +1,5 @@
 angular.module("contas").factory("movimentacaoAPI", function ($http, config) {
-	var _findAll = function () {
+	var _findByMovimentacoesAbertasSemItens = function () {
 		return $http.get(config.baseUrl + "/movimentacoes");
 	};
 	
@@ -8,7 +8,7 @@ angular.module("contas").factory("movimentacaoAPI", function ($http, config) {
 	};
 	
 	return {
-		findAll: _findAll,
+		findByMovimentacoesAbertasSemItens: _findByMovimentacoesAbertasSemItens,
 		save: _save
 	};
 });

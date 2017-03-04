@@ -1,4 +1,4 @@
-angular.module("contas").controller("novaMovimentacaoCtrl", function($scope, mesAPI, movimentacaoAPI, $location) {				
+angular.module("contas").controller("CreateMovimentacaoController", function($scope, mesAPI, movimentacaoAPI, $location) {				
 	$scope.meses = mesAPI.getMeses();		
 	$scope.adicionaMovimentacao = function (movimentacao) {				
 		movimentacao.statusMovimentacao = 'ABERTA';

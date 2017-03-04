@@ -1,7 +1,7 @@
 angular.module("contas").config(function ($routeProvider) {
 
 	$routeProvider.when("/contas", {
-		templateUrl: "view/contas/get-contas-view.html",
+		templateUrl: "view/conta/get-contas.html",
 		controller: "GetContasController",
 		resolve: {
 			contasTodas: function (contaAPI) {
@@ -11,23 +11,23 @@ angular.module("contas").config(function ($routeProvider) {
 	});
 
 	$routeProvider.when("/contas/nova", {
-		templateUrl: "view/contas/create-or-update-conta-view.html",
+		templateUrl: "view/conta/create-or-update-conta.html",
 		controller: "CreateContaController"		
 	});
 
 	$routeProvider.when("/contas/editar/:id", {
-		templateUrl: "view/contas/create-or-update-conta-view.html",
+		templateUrl: "view/conta/create-or-update-conta.html",
 		controller: "UpdateContaController"		
 	});
 	
 	$routeProvider.when("/movimentacoes/nova", {
-		templateUrl: "view/movimentacoes/novaMovimentacao.html",
-		controller: "novaMovimentacaoCtrl"
+		templateUrl: "view/movimentacao/create-movimentacao.html",
+		controller: "CreateMovimentacaoController"
 	});
 	
 	$routeProvider.when("/movimentacoes", {
-		templateUrl: "view/movimentacoes/movimentacoes.html",
-		controller: "movimentacoesCtrl",
+		templateUrl: "view/movimentacao/get-movimentacoes.html",
+		controller: "GetMovimetacoesController",
 		resolve: {
 			movimentacoesAbertasSemItens: function (movimentacaoAPI) {
 				return movimentacaoAPI.findByMovimentacoesAbertasSemItens();
@@ -44,7 +44,7 @@ angular.module("contas").config(function ($routeProvider) {
 		}
 	});*/
 	$routeProvider.when("/error", {
-		templateUrl: "view/error.html"
+		templateUrl: "view/error/error.html"
 	});
 	$routeProvider.otherwise(
 		{redirectTo: "/"}

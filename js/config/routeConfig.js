@@ -1,6 +1,7 @@
 angular.module("contas").config(function ($routeProvider) {
+
 	$routeProvider.when("/contas", {
-		templateUrl: "view/contas.html",
+		templateUrl: "view/contas/contas.html",
 		controller: "contasCtrl",
 		resolve: {
 			contasTodas: function (contaAPI) {
@@ -8,10 +9,17 @@ angular.module("contas").config(function ($routeProvider) {
 			}
 		}
 	});
-	$routeProvider.when("/novaConta", {
-		templateUrl: "view/novaConta.html",
+
+	$routeProvider.when("/contas/nova", {
+		templateUrl: "view/contas/novaConta.html",
 		controller: "novaContaCtrl"		
 	});
+
+	$routeProvider.when("/contas/editar/:id", {
+		templateUrl: "view/contas/novaConta.html",
+		controller: "EditarContaCtrl"		
+	});
+	
 	$routeProvider.when("/movimentacoes/nova", {
 		templateUrl: "view/movimentacoes/novaMovimentacao.html",
 		controller: "novaMovimentacaoCtrl"
@@ -37,5 +45,7 @@ angular.module("contas").config(function ($routeProvider) {
 	$routeProvider.when("/error", {
 		templateUrl: "view/error.html"
 	});
-	$routeProvider.otherwise({redirectTo: "/"});
+	$routeProvider.otherwise(
+		{redirectTo: "/"}
+	);
 });

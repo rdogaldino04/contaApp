@@ -1,8 +1,20 @@
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-10">
+				<h1>
+					Movimentações abertas sem itens.
+				</h1>
+			</div>			
+		</div>
+	</div>
+</div>
 <div class="container-fluid">
-<div class="table-responsive">
+	<div class="table-responsive">
 		<table id="tabela-produtos" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table" ng-show="movimetacoesList.length > 0">
 			<thead class="aw-table-header-solid">
-				<tr>					
+				<tr>
+					<th>Código</th>					
 					<th>Mês</th>
 					<th class="table-pesq-produto-col-ano">Ano</th>
 					<th class="table-pesq-produto-col-dataRegistro">Data Registro</th>
@@ -10,8 +22,9 @@
 					<th class="table-pesq-produto-col-acoes">Ações</th>
 				</tr>
 			</thead>
-			<tbody>				
-				<tr ng-repeat="movimentacao in movimetacoesList">					
+			<tbody>								
+				<tr ng-repeat="movimentacao in movimetacoesList">
+					<td>{{movimentacao.id}}</td>					
 					<td>{{movimentacao.mes}}</td>
 					<td class="table-pesq-produto-col-ano">{{movimentacao.ano}}</td>
 					<td class="table-pesq-produto-col-dataRegistro">{{movimentacao.dataRegistro | date:'dd/MM/yyyy HH:mm'}}</td>
@@ -19,7 +32,7 @@
 					<td class="table-pesq-produto-col-acoes">
 					
 						<div class="btn-group">
-							<button class="btn  btn-default btn-xs">
+							<button class="btn  btn-default btn-xs" ng-click="redirectMovimentacaoItem(movimentacao.id)">
 								<i class="fa  fa-pencil"></i>
 							</button>							
 						</div>
@@ -29,5 +42,4 @@
 			</tbody>
 		</table>
 	</div>
-
-	</div>
+</div>

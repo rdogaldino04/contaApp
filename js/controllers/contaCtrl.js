@@ -1,4 +1,4 @@
-angular.module("contas").controller("contasCtrl", function($scope, contasTodas) {
+angular.module("contas").controller("contasCtrl", function($scope, contasTodas, $location, contaAPI, $rootScope) {
 	$scope.app = "Controle de Contas";
 	$scope.contaList = contasTodas.data;
 	
@@ -13,6 +13,20 @@ angular.module("contas").controller("contasCtrl", function($scope, contasTodas) 
 	$scope.ordenarPor = function(campo) {
 		$scope.criterioDeOrdenacao = campo;
 		$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-	};		
+	};
+
+	/*$scope.editarConta = function(conta) {		  
 	
+		$rootScope.$broadcast('myCustomEvent', conta);
+		$location.path("/contas/editar");
+		
+	};*/
+
+	$scope.editarConta = function(conta) {
+		$location.path("/contas/editar/" + conta.id);
+	};
+
+	
+	
+
 });

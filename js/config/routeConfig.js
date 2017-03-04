@@ -1,8 +1,8 @@
 angular.module("contas").config(function ($routeProvider) {
 
 	$routeProvider.when("/contas", {
-		templateUrl: "view/contas/contas.html",
-		controller: "contasCtrl",
+		templateUrl: "view/contas/get-contas-view.html",
+		controller: "GetContasController",
 		resolve: {
 			contasTodas: function (contaAPI) {
 				return contaAPI.getContas();
@@ -11,19 +11,20 @@ angular.module("contas").config(function ($routeProvider) {
 	});
 
 	$routeProvider.when("/contas/nova", {
-		templateUrl: "view/contas/novaConta.html",
-		controller: "novaContaCtrl"		
+		templateUrl: "view/contas/create-or-update-conta-view.html",
+		controller: "CreateContaController"		
 	});
 
 	$routeProvider.when("/contas/editar/:id", {
-		templateUrl: "view/contas/novaConta.html",
-		controller: "EditarContaCtrl"		
+		templateUrl: "view/contas/create-or-update-conta-view.html",
+		controller: "UpdateContaController"		
 	});
 	
 	$routeProvider.when("/movimentacoes/nova", {
 		templateUrl: "view/movimentacoes/novaMovimentacao.html",
 		controller: "novaMovimentacaoCtrl"
 	});
+	
 	$routeProvider.when("/movimentacoes", {
 		templateUrl: "view/movimentacoes/movimentacoes.html",
 		controller: "movimentacoesCtrl",

@@ -34,6 +34,17 @@ angular.module("contas").config(function ($routeProvider) {
 			}
 		}		
 	});
+
+	$routeProvider.when("/item/add/:idMovimentacao", {
+		templateUrl: "view/movimentacaoItem/add-movimentacaoItem.html",
+		controller: "AddMovimentacaoItemController",
+		resolve: {
+			contasTodas: function (contaAPI) {
+				return contaAPI.getContas();
+			}
+		}		
+	});
+
 	/*$routeProvider.when("/detalhesContato/:id", {
 		templateUrl: "view/detalhesContato.html",
 		controller: "detalhesContatoCtrl",

@@ -1,1 +1,1 @@
-angular.module("contas", [ "ngMaterial", "ngMessages", "ngRoute" ]);
+angular.module("contas", [ "ngMessages", "ngRoute", "ui.bootstrap" ]);

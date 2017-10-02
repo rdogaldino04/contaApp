@@ -10,13 +10,13 @@ angular.module("contas").config(function ($routeProvider) {
 		}
 	});
 
-	$routeProvider.when("/contas/nova", {
+	$routeProvider.when("/contas/novasss", {
 		templateUrl: "view/conta/create-or-update-conta.html",
 		controller: "createContaController"		
 	});
 
 	//teste
-	$routeProvider.when("/test", {
+	$routeProvider.when("/contas/nova", {
 		template: "<cadastro-conta></cadastro-conta>",		
 	});
 

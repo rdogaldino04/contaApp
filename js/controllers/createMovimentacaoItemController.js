@@ -1,4 +1,4 @@
-angular.module("contas").controller("AddMovimentacaoItemController", function($scope, $routeParams, contasTodas, MovimentacaoItemAPI) {		
+angular.module("contas").controller("createMovimentacaoItemController", function($scope, $routeParams, contasTodas, MovimentacaoItemAPI) {		
 		
 	$scope.contas = contasTodas.data;
 	$scope.movimentacaoItem = {id: null, valor: null, dataRegistro: null, 

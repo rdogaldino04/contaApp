@@ -1,4 +1,4 @@
-angular.module("contas").controller("UpdateContaController", function ($scope, $routeParams, contaAPI, $location) {		
+angular.module("contas").controller("updateContaController", function ($scope, $routeParams, contaAPI, $location) {		
 	
 	contaAPI.findById($routeParams.id).then(function (result) {
     	$scope.conta = result.data;

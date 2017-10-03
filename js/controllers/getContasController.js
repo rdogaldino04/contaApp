@@ -1,4 +1,4 @@
-angular.module("contas").controller("GetContasController", function($scope, contasTodas, $location, contaAPI) {
+angular.module("contas").controller("getContasController", function($scope, contasTodas, $location, contaAPI) {
 
 	$scope.app = "Controle de Contas";
 	$scope.contaList = contasTodas.data;

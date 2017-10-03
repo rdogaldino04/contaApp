@@ -1,4 +1,4 @@
-angular.module("contas").controller("GetMovimetacoesController", function($scope, movimentacoesAbertasSemItens, $location) {
+angular.module("contas").controller("getMovimetacoesController", function($scope, movimentacoesAbertasSemItens, $location) {
 
 	$scope.app = "Controle de Contas";	
 	$scope.movimetacoesList = movimentacoesAbertasSemItens.data;

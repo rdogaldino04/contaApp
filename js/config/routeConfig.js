@@ -1,6 +1,6 @@
 angular.module("contas").config(function ($routeProvider) {
 
-	$routeProvider.when("/contas", {
+	$routeProvider.when("/contas4", {
 		templateUrl: "view/conta/get-contas.html",
 		controller: "getContasController",
 		resolve: {
@@ -16,7 +16,7 @@ angular.module("contas").config(function ($routeProvider) {
 	});
 
 	//teste
-	$routeProvider.when("/contas/nova", {
+	$routeProvider.when("/contas", {
 		template: "<cadastro-conta></cadastro-conta>",		
 	});
 

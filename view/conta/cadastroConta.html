@@ -1,47 +1,55 @@
-<div class="row">
-	<div class="col-sm-8"><h2>Cadastro de contas</h2></div>
-</div>
+<div class="container-fluid">		
+	<form name="contaForm" ng-submit="adicionaConta(conta)">
+		<input class="form-control" type="hidden" ng-model="conta.id" name="id" /> 	
 
-<form name="contaForm">
-	<input class="form-control" type="hidden" ng-model="conta.id" name="id" /> 	
+		<div ng-messages="contaForm.descricao.$error" 
+			ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid" role="alert"
+			class="container-fluid row">
+			<div ng-message="required" class="col-sm-8 alert alert-danger">
+				Por favor, preencha o campo descrição!
+			</div>
+			<div ng-message="minlength" class="col-sm-8 alert alert-danger">
+				O campo descricao deve ter no mínimo 3 caracteres.
+			</div>
+		</div>		
 
-	<div ng-messages="contaForm.descricao.$error" ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid"
-		role="alert">
-		<div ng-message="required">
-			Por favor, preencha o campo descrição!
+		<div class="row">
+			<div class="col-sm-5 form-group">
+				<label for="descricao">Descricao</label>
+				<input type="text" class="form-control" id="descricao" ng-model="conta.descricao"name="descricao" ng-required="true" ng-minlength="3">
+			</div>			
 		</div>
-		<div ng-message="minlength">
-			O campo descricao deve ter no mínimo 3 caracteres.
-		</div>
-	</div>		
 
-	<div class="row">
-		<div class="col-sm-8 form-group">
-			<label for="descricao">Descricao</label>
-			<input type="text" class="form-control" id="descricao" ng-model="conta.descricao"name="descricao" ng-required="true" ng-minlength="3">
+		<div class="row">
+			<div class="col-sm-8">
+				<button class="btn btn-primary" ng-disabled="contaForm.$invalid">
+					Salvar
+				</button>
+			</div>
 		</div>	
-	</div>
-
+	</form>
 	<div class="row">
-		<div class="col-sm-8">
-			<button class="btn btn-primary" ng-click="adicionaConta(conta)" ng-disabled="contaForm.$invalid">
-				Adicionar Conta
-			</button>
-		</div>
-	</div>	
-</form>
-
-<table ng-show="contas.length > 0" class="table table-responsive table-bordered">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Descrição</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="c in contas">
-			<th scope="row">{{c.id}}</th>
-			<td>{{c.descricao}}</td>
-		</tr>
-	</tbody>
-</table>
+			<div class="col-sm-8">
+				<table ng-show="contas.length > 0" class="table table-responsive table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Descrição</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="c in contas">
+							<td scope="row">{{c.id}}</td>
+							<td>{{c.descricao}}</td>
+							<td>
+								<button class="btn btn-primary btn-sm" ng-click="selecionar(c)">
+									Selecionar
+								</button>													
+							</td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>

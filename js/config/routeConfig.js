@@ -1,5 +1,13 @@
 angular.module("contas").config(function ($routeProvider) {
 
+	$routeProvider.when("/contas", {
+		template: "<cadastro-conta></cadastro-conta>",		
+	});
+
+	$routeProvider.when("/movimentacao", {
+		template: "<cadastro-movimentacao></cadastro-movimentacao>"
+	});
+
 	$routeProvider.when("/contas4", {
 		templateUrl: "view/conta/get-contas.html",
 		controller: "getContasController",
@@ -10,27 +18,26 @@ angular.module("contas").config(function ($routeProvider) {
 		}
 	});
 
+
 	$routeProvider.when("/contas/novasss", {
 		templateUrl: "view/conta/create-or-update-conta.html",
 		controller: "createContaController"		
 	});
 
-	//teste
-	$routeProvider.when("/contas", {
-		template: "<cadastro-conta></cadastro-conta>",		
-	});
+	
+	
 
 	$routeProvider.when("/contas/editar/:id", {
 		templateUrl: "view/conta/create-or-update-conta.html",
 		controller: "UpdateContaController"		
 	});
 	
-	$routeProvider.when("/movimentacoes/nova", {
+	$routeProvider.when("/movimentacoes/nova/xxxxxxx", {
 		templateUrl: "view/movimentacao/create-movimentacao.html",
 		controller: "createMovimentacaoController"
 	});
 	
-	$routeProvider.when("/movimentacoes", {
+	$routeProvider.when("/movimentacoes/xxxxxxxxxx", {
 		templateUrl: "view/movimentacao/get-movimentacoes.html",
 		controller: "getMovimetacoesController",
 		resolve: {

@@ -1,6 +1,5 @@
 <div class="container-fluid">		
-	<form name="contaForm" ng-submit="adicionaConta(conta)">
-		<input class="form-control" type="hidden" ng-model="conta.id" name="id" /> 	
+	<form name="contaForm" ng-submit="adicionaConta(conta)">		 	
 
 		<div ng-messages="contaForm.descricao.$error" 
 			ng-show="contaForm.descricao.$dirty && contaForm.descricao.$invalid" role="alert"
@@ -14,8 +13,12 @@
 		</div>		
 
 		<div class="row">
-			<div class="col-sm-5 form-group">
-				<label for="descricao">Descricao</label>
+			<div class="col-sm-1 form-group">
+				<label for="id">Código</label>
+				<input class="form-control" type="text" ng-model="conta.id" name="id" readonly/>
+			</div>
+			<div class="col-sm-7 form-group">
+				<label for="descricao">*Descricao</label>
 				<input type="text" class="form-control" id="descricao" ng-model="conta.descricao"name="descricao" ng-required="true" ng-minlength="3">
 			</div>			
 		</div>
@@ -25,6 +28,9 @@
 				<button class="btn btn-primary" ng-disabled="contaForm.$invalid">
 					Salvar
 				</button>
+				<button class="btn btn-primary" ng-click="reset()" ng-disabled="contaForm.$invalid">
+					limpar
+				</button>
 			</div>
 		</div>	
 	</form>
@@ -33,7 +39,7 @@
 				<table ng-show="contas.length > 0" class="table table-responsive table-bordered">
 					<thead>
 						<tr>
-							<th>#</th>
+							<th>Código</th>
 							<th>Descrição</th>
 							<th>Ações</th>
 						</tr>

@@ -1,3 +1,19 @@
-<div class="container-fluid">	
-iiiiiiiiiiiiii
+<div class="container-fluid">
+    <input type="text" name="idMovimentacaoPesquisa" ng-model="idMovimentacaoPesquisa">
+    <button ng-click="getByIdMovimentacao(idMovimentacaoPesquisa)">Pesquisar</button>
+   	{{movimentacao}}
+    <form name="movimentacaoForm" ng-submit="salvar(movimentacao)">
+        
+        <label for="id">Código</label>
+        <input type="text" id="id" name="id" ng-model="movimentacao.id" ng-readonly="true">
+
+        <label for="ano">Ano</label>
+        <input type="text" id="ano" name="ano" ng-model="movimentacao.ano" ng-readonly="desabilitaControlesMovimentacao">
+        
+        <label for="mes">Mês</label>
+        <input type="text" id="mes" name="mes" ng-model="movimentacao.mes" ng-readonly="desabilitaControlesMovimentacao">
+        
+        <button ng-disabled="desabilitaControlesMovimentacao">Salvar</button>
+
+    </form>
 </div>

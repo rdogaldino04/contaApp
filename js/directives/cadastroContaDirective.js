@@ -33,6 +33,11 @@ angular.module("contas").directive("cadastroConta", function () {
             $scope.selecionar = function(conta) {                              
                 angular.copy(conta, $scope.conta);              
             }
+
+            $scope.reset = function() {                
+                $scope.conta = {};
+            };
+
             carregarContas();	
 		}
 	};

@@ -2,7 +2,7 @@ angular.module("contas").directive("cadastroMovimentacao", function () {
     return {
         templateUrl: "view/movimentacao/cadastroMovimentacao.html",
         restrict: "E",
-        controller: function ($scope) {
+        controller: function ($scope, movimentacaoAPI) {
             $scope.idMovimentacaoPesquisa = "";
             var agora = new Date();             
             $scope.movimentacao = {
@@ -12,7 +12,16 @@ angular.module("contas").directive("cadastroMovimentacao", function () {
             
             $scope.desabilitaControlesMovimentacao = false;                      
 
-            $scope.salvar = function(movimentacao) {                            
+            $scope.salvar = function(movimentacao) {
+                movimentacao.statusMovimentacao = 'ABERTA';
+                movimentacao.dataRegistro = new Date();		
+                movimentacaoAPI.save(movimentacao).success(function (data) {
+                    console.log(data);                    
+                    
+                    //$location.path("/movimentacoes");		
+                }).error(function(data, status) {                   
+                    console.log("Aconteceu um problema: " + data + '--' + status);
+                });                           
                 console.log(movimentacao);                
                 $scope.desabilitaControlesMovimentacao = true;
             }
